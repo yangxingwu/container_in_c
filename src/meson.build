@@ -1,6 +1,7 @@
 src_files = [
   'main.c',
   'mount.c',
+  'user.c',
 ]
 
 executable('barcov2', src_files,

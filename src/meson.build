@@ -4,6 +4,7 @@ src_files = [
   'user.c',
   'cgroupsv2.c',
   'sec.c',
+  'container.c',
 ]
 
 executable('barcov2', src_files,

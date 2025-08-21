@@ -4,6 +4,7 @@
 #include <string.h>
 #include <signal.h>
 #include <sys/wait.h>
+#include <limits.h>
 
 #include "log/log.h"
 #include "mount.h"
@@ -39,7 +40,17 @@ int container_start(void *arg) {
               config->cmd, config->arg, config->mnt);
     log_info("### BARCONTAINER STARTING - type 'exit' to quit ###");
     // argv must be NULL terminated
-    char *argv[] = {config->arg, NULL};
+    char cmd_copy[PATH_MAX];
+    char arg_copy[256];
+    strncpy(cmd_copy, config->cmd, PATH_MAX - 1);
+    cmd_copy[PATH_MAX - 1] = '\0';
+    strncpy(arg_copy, config->arg, 256 - 1);
+    arg_copy[256 - 1] = '\0';
+    char *const argv[] = {
+        cmd_copy,
+        arg_copy,
+        NULL
+    };
     if (execve(config->cmd, argv, NULL)) {
         log_error("failed to execve '%s %s': %m", config->cmd, argv);
         return -1;

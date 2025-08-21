@@ -12,10 +12,10 @@ enum {
 typedef struct {
     uid_t uid;
     int fd;
-    char *hostname;
-    char *cmd;
-    char *arg;
-    char *mnt;
+    const char *hostname;
+    const char *cmd;
+    const char *arg;
+    const char *mnt;
 } container_config;
 
 // Initializes the container.

@@ -25,7 +25,7 @@ static long pivot_root(const char *new_root, const char *put_old) {
 // - pivot_root makes the bind mount the new root and mounts the old root onto
 // the inner temporary directory
 // - umount the old root and remove the inner temporary directory.
-int mount_set(char *mnt) {
+int mount_set(const char *mnt) {
     log_debug("setting mount...");
 
     // MS_PRIVATE makes the bind mount invisible outside of the namespace

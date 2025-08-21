@@ -17,7 +17,7 @@ struct cgroups_setting {
 // - create a directory for the new cgroup
 // - settings files are created automatically
 // - write the settings to the corresponding files
-int cgroupsv2_init(char *hostname, pid_t pid) {
+int cgroupsv2_init(const char *hostname, pid_t pid) {
     struct cgroups_setting procs_setting = {
         .name = CGROUPS_CGROUP_PROCS,
     };
@@ -109,7 +109,7 @@ int cgroupsv2_init(char *hostname, pid_t pid) {
 // Clean up the cgroups for the process. Since barco write the PID of its child
 // process to the cgroup.procs file, all that is needed is to remove the cgroups
 // directory after the child process is exited.
-int cgroupsv2_free(char *hostname) {
+int cgroupsv2_free(const char *hostname) {
     char dir[PATH_MAX] = {0};
 
     log_debug("freeing cgroups...");

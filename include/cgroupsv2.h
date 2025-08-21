@@ -14,9 +14,9 @@ enum {
 };
 
 // Initializes cgroups for the hostname
-int cgroupsv2_init(char *hostname, pid_t pid);
+int cgroupsv2_init(const char *hostname, pid_t pid);
 
 // Cleans up cgroups for the hostname
-int cgroupsv2_free(char *hostname);
+int cgroupsv2_free(const char *hostname);
 
 #endif

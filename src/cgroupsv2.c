@@ -4,7 +4,7 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 
-#include "log/log.h"
+#include "log.h"
 #include "cgroupsv2.h"
 
 // This struct is used to store cgroups settings.

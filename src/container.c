@@ -6,7 +6,7 @@
 #include <sys/wait.h>
 #include <limits.h>
 
-#include "log/log.h"
+#include "log.h"
 #include "mount.h"
 #include "user.h"
 #include "sec.h"

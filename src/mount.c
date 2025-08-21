@@ -6,7 +6,7 @@
 #include <libgen.h>
 #include <limits.h>
 
-#include "log/log.h"
+#include "log.h"
 #include "mount.h"
 
 // Changes the root filesystem of the current process and its children.

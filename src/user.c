@@ -7,7 +7,7 @@
 #include <errno.h>
 #include <string.h>
 
-#include "log/log.h"
+#include "log.h"
 #include "user.h"
 
 // Lets the parent process know that the user namespace is started.

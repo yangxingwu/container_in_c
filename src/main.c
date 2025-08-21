@@ -9,7 +9,7 @@
 #include <argtable3.h>
 
 #include "version.h"
-#include "log/log.h"
+#include "log.h"
 #include "container.h"
 #include "cgroupsv2.h"
 #include "user.h"

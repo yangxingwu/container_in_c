@@ -5,7 +5,7 @@
 #include <linux/sched.h>
 #include <sys/ioctl.h>
 
-#include "log/log.h"
+#include "log.h"
 #include "sec.h"
 
 // Capabilities are used to finely define the privileges of a process.

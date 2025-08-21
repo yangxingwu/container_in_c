@@ -37,22 +37,11 @@ int container_start(void *arg) {
     }
 
     log_debug("executing command '%s %s' from directory '%s' in container...",
-              config->cmd, config->arg, config->mnt);
+              config->cmd, config->argv[ARGV_ARG_INDEX], config->mnt);
     log_info("### BARCONTAINER STARTING - type 'exit' to quit ###");
     // argv must be NULL terminated
-    char cmd_copy[PATH_MAX];
-    char arg_copy[256];
-    strncpy(cmd_copy, config->cmd, PATH_MAX - 1);
-    cmd_copy[PATH_MAX - 1] = '\0';
-    strncpy(arg_copy, config->arg, 256 - 1);
-    arg_copy[256 - 1] = '\0';
-    char *const argv[] = {
-        cmd_copy,
-        arg_copy,
-        NULL
-    };
-    if (execve(config->cmd, argv, NULL)) {
-        log_error("failed to execve '%s %s': %m", config->cmd, argv);
+    if (execve(config->cmd, config->argv, NULL)) {
+        log_error("failed to execve '%s %s': %m", config->cmd, config->argv[ARGV_ARG_INDEX]);
         return -1;
     }
     log_debug("container started...");

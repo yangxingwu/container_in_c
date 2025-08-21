@@ -4,6 +4,7 @@
 #include <unistd.h>
 #include <sys/socket.h>
 #include <fcntl.h>
+#include <string.h>
 
 #include <argtable3.h>
 
@@ -83,9 +84,11 @@ int main(int argc, char **argv) {
         log_set_level(LOG_INFO);
 
     config.cmd = cmd->sval[0];
-    config.arg = (char *)arg->sval[0];
+    config.argv[ARGV_CMD_INDEX] = strdup(config.cmd);
     config.mnt = mnt->sval[0];
     config.hostname = "barcontainer";
+    if (arg->count > 0)
+        config.argv[ARGV_ARG_INDEX] = strdup(arg->sval[0]);
 
     // check if barco is running as root
     if (geteuid() != 0) {
@@ -172,5 +175,9 @@ cleanup:
 
 exit:
     arg_freetable(argtable, sizeof(argtable) / sizeof(argtable[0]));
+    if (config.argv[ARGV_CMD_INDEX])
+        free(config.argv[ARGV_CMD_INDEX]);
+    if (config.argv[ARGV_ARG_INDEX])
+        free(config.argv[ARGV_ARG_INDEX]);
     return exitcode;
 }

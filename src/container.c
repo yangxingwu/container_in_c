@@ -68,12 +68,6 @@ int container_init(container_config *config, char *stack) {
         return 1;
     }
 
-    // Close and zero the child's socket, to avoid leaving an open fd in
-    // case of a failure. If we do not do this, the child or parent might hang.
-    log_debug("resetting container socket...");
-    close(config->fd);
-    config->fd = 0;
-
     return container_pid;
 }
 
